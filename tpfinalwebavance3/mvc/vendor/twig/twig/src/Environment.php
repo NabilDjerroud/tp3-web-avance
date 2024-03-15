@@ -277,6 +277,7 @@ class Environment
      */
     public function render($name, array $context = []): string
     {
+        // var_dump($context);
         return $this->load($name)->render($context);
     }
 

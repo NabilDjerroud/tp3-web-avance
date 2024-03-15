@@ -126,7 +126,6 @@ class LocationController
 
     public function recupereVoiture()
     {
-        // Supposons que vous récupériez les données des voitures depuis votre base de données
         $voitureModel = new Voiture(); // Instanciation de la classe Voiture
         $voitures = $voitureModel->all(); // Appel de la méthode all() sur l'instance de Voiture
         return $voitures;
@@ -134,7 +133,7 @@ class LocationController
 
     public function recupereClients()
     {
-        $clientModel = new Client(); // Supposons que Client est votre modèle de client
+        $clientModel = new Client(); 
         $clients = $clientModel->all();
         return $clients;
     }

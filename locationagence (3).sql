@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 15 mars 2024 à 04:53
+-- Généré le : ven. 15 mars 2024 à 16:37
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -44,7 +44,7 @@ INSERT INTO `client` (`id`, `nom`, `email`, `telephone`) VALUES
 (3, 'teststetst', 'nabil.djerroud93@hotmail.com', '5068995174'),
 (4, 'Nabil Djerroudqsdqsddsq', 'nabil.djerroud93@hotmail.com', '0773199330'),
 (5, 'Nabil Djerroudsssssss', 'nabil.djerroud93@hotmail.com', '5068995174'),
-(6, 'tes', 'nabil.djerroud93@hotmail.com', '5068995174');
+(6, 'tesgfg', 'nabil.djerroud93@hotmail.com', '5068995174');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,13 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `email`, `privilege_id`, `created_at`) VALUES
 (1, 'Bilou', 'nabil@bilou.dz', '$2y$10$L0UY2raf8XV12iWN7qhk3uuqfqQg8Ro/dpD8lWwPuaPbSJirtXwMa', 'nabil@bilou.dz', 1, '2024-03-14 17:46:01'),
 (44, 'Nabil', 'test@test.ca', '$2y$10$L0UY2raf8XV12iWN7qhk3uuqfqQg8Ro/dpD8lWwPuaPbSJirtXwMa', 'test@test.ca', 1, '2024-03-14 16:59:24'),
-(45, 'Test 1', 'Nabil@gmail.com', '$2y$10$AKr8GHlZ6cxlw7nOmWZape3xUYCvndN7uopJEwafiBHL8d5LQpSNO', 'Nabil@gmail.com', 3, '2024-03-14 17:47:20');
+(45, 'Test 1', 'Nabil@gmail.com', '$2y$10$AKr8GHlZ6cxlw7nOmWZape3xUYCvndN7uopJEwafiBHL8d5LQpSNO', 'Nabil@gmail.com', 3, '2024-03-14 17:47:20'),
+(46, 'test', 'e2899555@cmaisonneuve.qc.ca', '$2y$10$capjYPfTXwNp395W1/PUgOmEDAonS9tf8vNMKmrrMKimuhYCyuMUO', 'nabil.djerroud93@gmail.com', 1, '2024-03-15 04:51:10'),
+(47, 'malha', 'emma.luche@gmail.com', '$2y$10$kSB.bjZHorbcENvo/rp40ep6xQ0nBfw4nvyIThfBf8L/Q2gDznCge', 'emma.luche@gmail.com', 1, '2024-03-15 04:52:03'),
+(48, 'malha', 'tssest@test.ca', '$2y$10$Kwizq4SOo5uXsM0Ls0rNPurtlW/DLqK6SFIIteo4nJEJL/2QyB5j.', 'tssest@test.ca', 1, '2024-03-15 04:55:04'),
+(49, 'malhatest', 'tsdsdest@test.ca', '$2y$10$/gOw88tI7gsjniMZn0R5OeGrnO85PHqd57CVvGOP..5BYB.tx6VMi', 'tsdsdest@test.ca', 1, '2024-03-15 04:56:26'),
+(50, 'ssssss', 'vv@v.va', '$2y$10$cc3yUQsUj/JRI49MbKjP2O5sXnTVz3OpDtM7WtSMovQjjkvomGSCq', 'vv@v.va', 3, '2024-03-15 05:10:07'),
+(51, 'Malek', 'male@t.ca', '$2y$10$08ECGB8xWUHC2bMbh2.gQOPoHJO/r1VriM4IRn/WJEdHLQHoBhsRy', 'male@t.ca', 1, '2024-03-15 13:23:42');
 
 -- --------------------------------------------------------
 
@@ -121,12 +127,23 @@ INSERT INTO `user` (`id`, `name`, `username`, `password`, `email`, `privilege_id
 
 CREATE TABLE `user_logs` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `ip_address` varchar(255) DEFAULT NULL,
   `visited_page` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `user_logs`
+--
+
+INSERT INTO `user_logs` (`id`, `username`, `ip_address`, `visited_page`, `created_at`, `user_id`) VALUES
+(134, 'utilisateur_test', '192.168.1.1', '/page-test', '2024-03-15 19:58:30', 1),
+(135, 'utilisateur_test', '192.168.1.1', '/page-test', '2024-03-15 19:58:32', 1),
+(136, 'utilisateur_test', '192.168.1.1', '/page-test', '2024-03-15 19:59:01', 1),
+(137, 'utilisateur_test', '192.168.1.1', '/page-test', '2024-03-15 19:59:06', 1),
+(138, 'utilisateur_test', '192.168.1.1', '/page-test', '2024-03-15 20:26:48', 1);
 
 -- --------------------------------------------------------
 
@@ -198,7 +215,8 @@ ALTER TABLE `user`
 -- Index pour la table `user_logs`
 --
 ALTER TABLE `user_logs`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_logs_user_id` (`user_id`);
 
 --
 -- Index pour la table `voiture`
@@ -223,7 +241,7 @@ ALTER TABLE `voiture_location`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `location`
@@ -241,13 +259,13 @@ ALTER TABLE `privilege`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT pour la table `user_logs`
 --
 ALTER TABLE `user_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT pour la table `voiture`
@@ -270,6 +288,12 @@ ALTER TABLE `location`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `fk_privilege_id` FOREIGN KEY (`privilege_id`) REFERENCES `privilege` (`id`);
+
+--
+-- Contraintes pour la table `user_logs`
+--
+ALTER TABLE `user_logs`
+  ADD CONSTRAINT `fk_user_logs_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `voiture_location`

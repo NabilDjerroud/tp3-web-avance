@@ -6,6 +6,7 @@ use Twig\Environment;
 
 class View {
     static public function render($template, $data = []){
+        // var_dump($template);
         $loader = new FilesystemLoader('views');
         $twig = new Environment($loader);
         $twig->addGlobal('asset', ASSET);

@@ -25,4 +25,3 @@
     {% if guest is empty %}
         Hello {{ session.user_name }}! 
     {% endif %}
-    

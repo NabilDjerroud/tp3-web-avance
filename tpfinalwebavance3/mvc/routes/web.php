@@ -53,7 +53,9 @@ Route::post('/login', 'AuthController@store');
 Route::get('/logout', 'AuthController@delete');
 
 
-Route::get('/user/logs', 'UserController@logs');
+Route::get('/user/logs', 'UserlogsController@index');
+Route::get('/user/logs', 'UserlogsController@show');
+
 
 Route::get('/generate-pdf', 'UserController@generatePDF');
 

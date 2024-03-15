@@ -30,26 +30,5 @@ class User extends CRUD{
         }
     }
 
-    public function logs(){
-    return $this->hasMany('App\Models\UserLog', 'user_id');
-    }
-
-    public function logActivity($ipAddress, $visitedPage){
-
-    $log = new UserLog;
-    $log->user_id = $this->id;
-    $log->username = $this->username;
-    $log->ip_address = $ipAddress;
-    $log->visited_page = $visitedPage;
-    $log->save();
-    }
-
-    public static function findByUsername($username) {
-        $db = static::getDB();
-        $sql = "SELECT * FROM users WHERE username = :username";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':username', $username, \PDO::PARAM_STR);
-        $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
-    }
+    
 }

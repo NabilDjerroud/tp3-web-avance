@@ -1,10 +1,6 @@
-<!-- mvc/views/user/logs.php -->
-
-
-
-{{ include('layouts/header.php', {title: 'Registration'})}}
+{{ include('layouts/header.php', {title: 'Journal de bord'}) }}
 <div class="container">
-    <h2>Journal de bord</h2>
+    <h2>Journal de bord</h2>    
     <table class="table">
         <thead>
             <tr>
@@ -31,8 +27,6 @@
     </table>
 </div>
 
-
 <a class="btn" href="{{base}}/generate-pdf" target="_blank">Télécharger le journal de bord au format PDF</a>
 
-{{ include('layouts/footer.php')}}
-
+{{ include('layouts/footer.php') }}
